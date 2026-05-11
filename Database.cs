@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
@@ -9,16 +10,16 @@ namespace KursProject_Malyshev_24VP2
     // Класс для работы с базой данных PostgreSQL
     internal class Database
     {
-        // ================= КОНСТАНТЫ ПОДКЛЮЧЕНИЯ =================
+        // ================= НАСТРОЙКИ ПОДКЛЮЧЕНИЯ (читаются из App.config) =================
 
-        private const string PgHost = "localhost";
-        private const int PgPort = 5432;
-        private const string PgUser = "postgres";
-        private const string PgPassword = "password";
-        private const string PgBinPath = @"C:\Program Files\PostgreSQL\18\bin\";
+        private static string PgHost => ConfigurationManager.AppSettings["PgHost"] ?? "localhost";
+        private static int PgPort => int.TryParse(ConfigurationManager.AppSettings["PgPort"], out int p) ? p : 5432;
+        private static string PgUser => ConfigurationManager.AppSettings["PgUser"] ?? "postgres";
+        private static string PgPassword => ConfigurationManager.AppSettings["PgPassword"] ?? "password";
+        private static string PgBinPath => ConfigurationManager.AppSettings["PgBinPath"] ?? @"C:\Program Files\PostgreSQL\18\bin\";
 
         // Текущая активная БД — меняется при создании/открытии/удалении
-        public static string CurrentDatabase = "bus_park";
+        public static string CurrentDatabase = ConfigurationManager.AppSettings["DefaultDatabase"] ?? "bus_park";
 
         // Строка подключения к текущей БД
         private static string ConnectionString =>
