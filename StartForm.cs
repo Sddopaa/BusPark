@@ -9,18 +9,17 @@ namespace KursProject_Malyshev_24VP2
         // Время показа заставки — 10 секунд
         private const int SECONDS = 10000;
 
-        // Главная форма приложения
-        private MainForm form1 = new MainForm();
+        // После заставки показываем форму выбора БД, а не сразу главную
+        private SelectDbForm selectDbForm = new SelectDbForm();
 
-        // Таймер для автоматического закрытия заставки
         private Timer _timer = new Timer();
 
         public StartForm() => InitializeComponent();
 
-        // Скрываем заставку и показываем главную форму
+        // Скрываем заставку и показываем форму выбора БД
         private void CloseStartForm()
         {
-            form1.Show();
+            selectDbForm.Show();
             this.Hide();
         }
 
@@ -28,14 +27,15 @@ namespace KursProject_Malyshev_24VP2
         private void StartForm_Load(object sender, EventArgs e)
         {
             _timer.Interval = SECONDS;
-            _timer.Tick += (s, args) => CloseStartForm();
+            _timer.Tick += (s, args) => { _timer.Stop(); _timer.Dispose(); CloseStartForm(); };
             _timer.Start();
         }
 
-        // Кнопка "Начать" — останавливаем таймер и открываем главную форму
+        // Кнопка "Начать" — останавливаем таймер и открываем форму выбора БД
         private void button1_Click(object sender, EventArgs e)
         {
             _timer.Stop();
+            _timer.Dispose();
             CloseStartForm();
         }
 

@@ -43,22 +43,8 @@ namespace KursProject_Malyshev_24VP2
         // ================= ЗАГРУЗКА ФОРМЫ =================
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Блокируем всё кроме меню и кнопки выхода до загрузки БД
-            LockControls();
-
-            // Проверяем существование БД, создаём если нет
-            Database.EnsureDatabaseExists();
-
-            // Создаём таблицу buses если её нет
-            Database.InitializeDatabase();
-
-            // Загружаем данные из БД в список
-            Database.LoadFromDatabase();
-
-            // Отображаем данные в таблице
+            // БД уже выбрана на предыдущем экране (SelectDbForm) — просто отображаем данные
             table.UpdateTable();
-
-            // Разблокируем контролы после успешной загрузки
             UnlockControls();
 
             // Запрет редактирования ячеек напрямую

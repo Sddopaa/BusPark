@@ -117,19 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Добро пожаловать!
-
-Информационная система «Автобусный парк»
-
-Программа предназначена для учёта транспортных средств,
-управления маршрутами, водителями, а также
-контроля доходов, расходов и пробега автобусов.
-
-Автор: Малышев Сергей Романович
-Группа: 24ВП2
-Пензенский государственный университет
-2026
-</value>
-  </data>
 </root>
